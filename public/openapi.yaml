@@ -1,0 +1,15 @@
+openapi: 3.0.4
+info:
+  title: API Ecommerce
+  description: "API authentication sederhana"
+  version: 1.0.12
+servers:
+  - url: http://127.0.0.1:8001/api
+paths:
+  /user:
+    get:
+      summary: API Get Profile.
+      description: Desckripsi endpoint
+      responses:
+        '200':
+          description: successful operation
