@@ -78,7 +78,36 @@ Route::get('/morph_many_to_many', function () {
     $tag->posts()->detach();
     $tag->videos()->detach();
     dd($tag->posts, $tag->videos);
+});
 
+Route::get('/collection', function () {
+    $posts = Post::get();
+    $collection = collect([1,2,3]);
+
+    dump($posts, $collection);
+
+//    $collection = $collection->map(function ($value) {
+//        return $value * 2;
+//    });
+
+//    $collection = $collection->filter(function ($value) {
+//        return $value >= 2;
+//    });
+//    $collection = $collection->reject(function ($value) {
+//        return $value >= 2;
+//    });
+
+//    $collection = $collection->map(function ($value) {
+//        return $value * 2;
+//    })->reject(function ($value) {
+//        return $value >= 5;
+//    });
+
+//    $collection = $collection->reduce(function ($carry, $item) {
+//        return $carry + $item;
+//    }, 0);
+
+    dump($collection);
 });
 
 
