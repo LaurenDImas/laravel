@@ -82,30 +82,97 @@ Route::get('/morph_many_to_many', function () {
 
 Route::get('/collection', function () {
     $posts = Post::get();
-    $collection = collect([1,2,3]);
+    $collection = collect([1,2,3,7,6]);
+
+    $students = collect([
+        [
+            'name' => 'Gilang',
+            'address' => 'Jaksel'
+        ],
+        [
+            'name' => 'Dimas',
+            'address' => 'Jakbar'
+        ],
+        [
+            'name' => 'Azis',
+            'address' => 'Jaksel'
+        ],
+        [
+            'name' => 'Yogi',
+            'address' => 'Jakbar'
+        ],
+        [
+            'name' => 'Pratama',
+            'address' => 'Jakbar'
+        ],
+    ]);
+
+    dd($students->groupBy('address'));
+
+    $posts->chunk(100)->each(function ($chunked){
+        $chunked->each(function ($post){
+            echo $post->title;
+        });
+        echo '<hr/>';
+    });
+    die();
+
+    dd($students->sortByDesc('name'));
+    dd($collection->sort());
+    dd($collection->sortDesc());
+    dd($posts->firstWhere('id', '>=', 100));
+    dd($posts->where('id', '>=', 100));
+    dd($students->contains('name', 'Azis'));
+    dd($collection->sum());
 
     dump($posts, $collection);
 
-//    $collection = $collection->map(function ($value) {
-//        return $value * 2;
-//    });
+    $collection = $collection->map(function ($value) {
+        return $value * 2;
+    });
 
-//    $collection = $collection->filter(function ($value) {
-//        return $value >= 2;
-//    });
-//    $collection = $collection->reject(function ($value) {
-//        return $value >= 2;
-//    });
+    $collection = $collection->filter(function ($value) {
+        return $value >= 2;
+    });
+    $collection = $collection->reject(function ($value) {
+        return $value >= 2;
+    });
 
-//    $collection = $collection->map(function ($value) {
-//        return $value * 2;
-//    })->reject(function ($value) {
-//        return $value >= 5;
-//    });
+    $collection = $collection->map(function ($value) {
+        return $value * 2;
+    })->reject(function ($value) {
+        return $value >= 5;
+    });
 
-//    $collection = $collection->reduce(function ($carry, $item) {
-//        return $carry + $item;
-//    }, 0);
+    $collection = $collection->reduce(function ($carry, $item) {
+        return $carry + $item;
+    }, 0);
+
+    $posts = $posts->map(function ($post) {
+        return [
+            'title' => $post->title,
+            'tags' => $post->tags->map(function ($tag) {
+                return ucwords($tag->name);
+            })->toArray(),
+        ];
+    });
+
+    $posts->push([
+        "title" => "Judul Post 1",
+        "tags" => [
+            "b"
+        ]
+    ]);
+    $posts->prepend([
+        "title" => "Judul Post 1",
+        "tags" => [
+            "b"
+        ]
+    ]);
+    $posts->pop();
+    $posts->shift();
+    dd($posts);
+
 
     dump($collection);
 });

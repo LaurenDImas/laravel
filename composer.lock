@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2175e2069bc973c78d88403d7296056",
+    "content-hash": "5dadf1be8360c33ab799d7850143b82b",
     "packages": [
         {
             "name": "brick/math",
@@ -1521,6 +1521,41 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.10.1"
             },
             "time": "2025-01-27T14:24:01+00:00"
+        },
+        {
+            "name": "ldyp/sebut",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/ldyp/sebut",
+                "reference": "510a7d3d1df4db4ba56b5830e4842ba009e0ff68"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ldyp\\Sebut\\SebutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ldyp\\Sebut\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "LaurenDImas",
+                    "email": "dimas.yogi.777@gmail.com"
+                }
+            ],
+            "description": "Package untuk menyebutkan angka menjadi string",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "league/commonmark",
@@ -9504,7 +9539,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "ldyp/sebut": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
